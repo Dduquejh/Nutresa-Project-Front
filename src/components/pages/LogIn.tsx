@@ -32,13 +32,15 @@ export const LogIn = () => {
     }
 
     if (!validatePassword(password)) {
-      setError("La contraseña debe tener al menos 6 caracteres, incluir un número y un carácter especial.");
+      setError(
+        "La contraseña debe tener al menos 6 caracteres, incluir un número y un carácter especial."
+      );
       return;
     }
-
+    console.log(process.env.NEXT_PUBLIC_BACKEND_URL); // Esto debería mostrar "http://localhost:8000"
     const url = isRegisterMode
-      ? "http://localhost:8000/register" // Ruta de registro
-      : "http://localhost:8000/login";    // Ruta de login
+      ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/register`
+      : `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`;
 
     try {
       const response = await fetch(url, {
@@ -56,7 +58,12 @@ export const LogIn = () => {
         navigate("/inicio"); // Redirigir si tiene éxito
       } else {
         const result = await response.json();
-        setError(result.detail || (isRegisterMode ? "Error al registrarse" : "Error al iniciar sesión"));
+        setError(
+          result.detail ||
+            (isRegisterMode
+              ? "Error al registrarse"
+              : "Error al iniciar sesión")
+        );
       }
     } catch (err) {
       setError("Error de conexión con el servidor");
@@ -69,7 +76,9 @@ export const LogIn = () => {
       <div className="w-1/2 flex flex-col justify-center items-center p-8">
         <div className="w-full max-w-md flex flex-col items-center">
           <img src={EIALogo} alt="EIA Logo" className="mb-8 w-32" />
-          <h2 className="text-2xl font-semibold mb-6">{isRegisterMode ? "Registrarse" : "Iniciar sesión"}</h2>
+          <h2 className="text-2xl font-semibold mb-6">
+            {isRegisterMode ? "Registrarse" : "Iniciar sesión"}
+          </h2>
 
           {/* Campos de entrada */}
           <input
@@ -106,14 +115,20 @@ export const LogIn = () => {
             }}
             className="mt-4 text-blue-500 hover:underline"
           >
-            {isRegisterMode ? "¿Ya tienes una cuenta? Inicia sesión" : "¿No tienes cuenta? Regístrate"}
+            {isRegisterMode
+              ? "¿Ya tienes una cuenta? Inicia sesión"
+              : "¿No tienes cuenta? Regístrate"}
           </button>
         </div>
       </div>
 
       {/* Contenedor de la parte derecha */}
       <div className="w-1/2 flex flex-col justify-center items-center bg-white">
-        <img src={GlobeGraphic} alt="Planet Graphic" className="w-4/5 max-w-xs mb-12" />
+        <img
+          src={GlobeGraphic}
+          alt="Planet Graphic"
+          className="w-4/5 max-w-xs mb-12"
+        />
         <img src={CriskAi} alt="CriskAI Logo" className="w-1/3 max-w-xs" />
       </div>
     </div>
