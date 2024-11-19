@@ -27,7 +27,7 @@ export const Datos = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/upload/`,
+        `${process.env.REACT_APP_BACKEND_URL}/upload/`, // Cambié NEXT_PUBLIC_ a REACT_APP_
         formData,
         {
           headers: {
@@ -47,7 +47,7 @@ export const Datos = () => {
   const fetchUploadedFiles = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/files/`
+        `${process.env.REACT_APP_BACKEND_URL}/files/` // Cambié NEXT_PUBLIC_ a REACT_APP_
       );
       setUploadedFiles(response.data.files);
     } catch (error) {
@@ -67,7 +67,7 @@ export const Datos = () => {
 
     try {
       await axios.delete(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/files/${fileToDelete}`
+        `${process.env.REACT_APP_BACKEND_URL}/files/${fileToDelete}` // Cambié NEXT_PUBLIC_ a REACT_APP_
       );
       alert(`Archivo '${fileToDelete}' eliminado correctamente`);
       fetchUploadedFiles(); // Actualizar la lista de archivos
@@ -80,7 +80,7 @@ export const Datos = () => {
 
   const handleDeleteAll = async () => {
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/files`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/files`); // Cambié NEXT_PUBLIC_ a REACT_APP_
       alert("Todos los archivos han sido eliminados correctamente");
       fetchUploadedFiles(); // Actualizar la lista de archivos
       setDeleteAll(false); // Limpiar el input
