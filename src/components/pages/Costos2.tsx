@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners"; // Importamos el loader
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 // Componente
 const Costos2: React.FC = () => {
   const [climateRisk, setClimateRisk] = useState<string>("Mercado");
@@ -69,7 +71,7 @@ const Costos2: React.FC = () => {
 
         // Hacer la solicitud al backend
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/coffee_cost_analysis_plot`
+          `${backendUrl}/coffee_cost_analysis_plot`
         );
 
         if (!response.ok) {

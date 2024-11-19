@@ -4,6 +4,8 @@ import GlobeGraphic from "../../Images/PlanetLogin.png";
 import EIALogo from "../../Images/Logo.png";
 import CriskAi from "../../Images/Logo2.png";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -37,10 +39,10 @@ export const LogIn = () => {
       );
       return;
     }
-    console.log(process.env.NEXT_PUBLIC_BACKEND_URL); // Esto debería mostrar "http://localhost:8000"
+    console.log(backendUrl); // Esto debería mostrar "http://localhost:8000"
     const url = isRegisterMode
-      ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/register`
-      : `${process.env.NEXT_PUBLIC_BACKEND_URL}/login`;
+      ? `${backendUrl}/register` // Cambié NEXT_PUBLIC_ a REACT_APP_
+      : `${backendUrl}/login`;
 
     try {
       const response = await fetch(url, {

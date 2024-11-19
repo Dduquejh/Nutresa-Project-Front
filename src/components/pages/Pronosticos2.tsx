@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners"; // Importamos el loader
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 // Componente
 const Pronosticos2: React.FC = () => {
   const [climateRisk, setClimateRisk] = useState<string>("Mercado");
@@ -69,7 +71,7 @@ const Pronosticos2: React.FC = () => {
 
         // Hacer la solicitud al backend
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/coffee_price_plot`
+          `${backendUrl}/coffee_price_plot`
         );
 
         if (!response.ok) {
@@ -95,7 +97,7 @@ const Pronosticos2: React.FC = () => {
 
         // Hacer la solicitud al backend
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/coffee_consumption_plot`
+          `${backendUrl}/coffee_consumption_plot`
         );
 
         if (!response.ok) {

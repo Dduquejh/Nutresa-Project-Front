@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const FileDetails: React.FC = () => {
   const { fileName } = useParams<{ fileName: string }>(); // Extraer el nombre del archivo de los parámetros de la URL
   const navigate = useNavigate(); // Añadir esto para manejar la navegación
@@ -12,7 +14,7 @@ export const FileDetails: React.FC = () => {
     const fetchFileData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/file-data/${fileName}`
+          `${backendUrl}/file-data/${fileName}` // Cambié NEXT_PUBLIC_ a REACT_APP_
         );
         setHeaders(response.data.headers); // Asignar encabezados a la variable de estado
         setData(response.data.data); // Asignar datos a la variable de estado
@@ -30,7 +32,7 @@ export const FileDetails: React.FC = () => {
       <button onClick={() => navigate(-1)} className="text-red-500">
         Cerrar
       </button>
-
+    
       {/* Contenedor con desplazamiento */}
       <div
         className="overflow-auto"

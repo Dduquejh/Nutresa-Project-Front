@@ -3,6 +3,8 @@ import axios from "axios";
 import { ModuleLayout } from "../ModuleLayout";
 import { useNavigate } from "react-router-dom";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 export const Pronosticos = () => {
   const [files, setFiles] = useState<string[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -12,7 +14,7 @@ export const Pronosticos = () => {
   const fetchFiles = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/files/`
+        `${backendUrl}/files/` // Cambié NEXT_PUBLIC_ a REACT_APP_
       );
       setFiles(response.data.files || []);
     } catch (error) {
