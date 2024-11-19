@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+# Proyecto Nutresa
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Lo que se logró
 
-Currently, two official plugins are available:
+- Se logró plantear gran parte del front necesario.
+- Se consiguió implementar login con encriptación de contraseñas.
+- Se llegó a utilizar los modelos de Google Colab, no como un archivo `.pkl`, sino llamando directamente a su código para la generación de los archivos `.xlsx` y posteriormente la creación de gráficos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Lo que no se logró
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- No se logró implementar los modelos entrenados `.pkl` que se encontraban en Google Colab, debido a problemas con versiones.
+- Faltaron muchos modelos por implementar; solo se consiguió `predictions` y `cost_analysis` de Coffee.
+- Tampoco se pudo realizar el análisis de escenarios de Coffee, ya que era necesario contar con un archivo Excel que contuviera los escenarios.
